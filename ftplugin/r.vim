@@ -1,0 +1,9 @@
+:setlocal shiftwidth=3
+:setlocal tabstop=3
+:setlocal softtabstop=3
+:setlocal expandtab
+:setlocal foldenable
+:setlocal foldmethod=manual
+:setlocal nu
+:colorscheme colors
+:syntax enable
