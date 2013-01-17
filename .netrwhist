@@ -1,4 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_cnt =3
 let g:netrw_dirhist_1='/Users/gfilion/src/Python/thegrandlocus/thegrandlocus_theme/static/js'
 let g:netrw_dirhist_2='/Users/gfilion/src/R/unf/R'
+let g:netrw_dirhist_3='/home/gfilion/.vim'

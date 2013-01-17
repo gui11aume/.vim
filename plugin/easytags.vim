@@ -80,7 +80,9 @@ function! s:InitEasyTags(version)
     " some frustration the plug-in will search the path and consider every
     " possible location, meaning that as long as Exuberant Ctags is installed
     " in the $PATH the plug-in should find it automatically.
-    for program in xolox#misc#path#which('ctags', 'exuberant-ctags', 'exctags')
+    " XXX GF20130117 XXX Installation seems to create conflicts with Emacs,
+    " I need to add 'ctags-exuberant' to the list of possible executables.
+    for program in xolox#misc#path#which('ctags', 'exuberant-ctags', 'exctags', 'ctags-exuberant')
       if s:CheckCtags(program, a:version)
         let g:easytags_cmd = program
         return 1

@@ -4,4 +4,4 @@ set t_Co=256
 " ~/.vim/ftplugin
 filetype plugin indent on
 " so $HOME/.vim/filetypes.vim
-:helptags ~/.vim/doc
+" :helptags ~/.vim/doc
