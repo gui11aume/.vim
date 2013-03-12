@@ -40,3 +40,6 @@ hi texSection ctermfg=201
 
 " C colors
 hi cType cterm=bold ctermfg=29
+
+" Java colors
+hi JavaType cterm=bold ctermfg=29
