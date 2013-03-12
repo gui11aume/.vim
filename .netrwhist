@@ -1,8 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/TEMP_DDN/users/gfilion/gfilion/src'
-let g:netrw_dirhist_2='/TEMP_DDN/users/gfilion/gfilion/src/R/HummingBee/R'
-let g:netrw_dirhist_3='/TEMP_DDN/users/gfilion/gfilion/src/R/HummingBee'
-let g:netrw_dirhist_4='/TEMP_DDN/users/gfilion/gfilion/src/R/HummingBee/R'
-let g:netrw_dirhist_5='/TEMP_DDN/users/gfilion/gfilion/Desktop/NAHMM/R'
-let g:netrw_dirhist_6='/TEMP_DDN/users/gfilion/gfilion/src/R/HMMt/R'
