@@ -15,3 +15,5 @@ filetype plugin indent on
 " so $HOME/.vim/filetypes.vim
 " Run the following command to activate tags.
 " :helptags ~/.vim/doc
+" Run the following to force tag update.
+" :UpdateTags
