@@ -19,3 +19,4 @@ autocmd FileType python setlocal shiftwidth=3 tabstop=3 expandtab
 " so $HOME/.vim/filetypes.vim
 " Run the following command to activate tags.
 " :helptags ~/.vim/doc
+execute pathogen#infect()
