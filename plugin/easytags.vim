@@ -1,6 +1,6 @@
 " Vim plug-in
 " Author: Peter Odding <peter@peterodding.com>
-" Last Change: October 29, 2011
+" Last Change: June 29, 2014
 " URL: http://peterodding.com/code/vim/easytags/
 " Requires: Exuberant Ctags (http://ctags.sf.net)
 
@@ -11,6 +11,20 @@
 if &cp || exists('g:loaded_easytags')
   finish
 endif
+
+" Make sure vim-misc is installed. {{{1
+
+try
+  " The point of this code is to do something completely innocent while making
+  " sure the vim-misc plug-in is installed. We specifically don't use Vim's
+  " exists() function because it doesn't load auto-load scripts that haven't
+  " already been loaded yet (last tested on Vim 7.3).
+  call type(g:xolox#misc#version)
+catch
+  echomsg "Warning: The vim-easytags plug-in requires the vim-misc plug-in which seems not to be installed! For more information please review the installation instructions in the readme (also available on the homepage and on GitHub). The vim-easytags plug-in will now be disabled."
+  let g:loaded_easytags = 1
+  finish
+endtry
 
 " Configuration defaults and initialization. {{{1
 
@@ -27,12 +41,12 @@ if !exists('g:easytags_by_filetype')
 endif
 
 if !exists('g:easytags_events')
-  let g:easytags_events = []
+  let g:easytags_events = ['BufWritePost']
   if !exists('g:easytags_on_cursorhold') || g:easytags_on_cursorhold
     call extend(g:easytags_events, ['CursorHold', 'CursorHoldI'])
   endif
   if exists('g:easytags_always_enabled') && g:easytags_always_enabled
-    call extend(g:easytags_events, ['BufReadPost', 'BufWritePost', 'FocusGained', 'ShellCmdPost', 'ShellFilterPost'])
+    call extend(g:easytags_events, ['BufReadPost', 'FocusGained', 'ShellCmdPost', 'ShellFilterPost'])
   endif
 endif
 
@@ -40,113 +54,39 @@ if !exists('g:easytags_ignored_filetypes')
   let g:easytags_ignored_filetypes = '^tex$'
 endif
 
-if !exists('g:easytags_ignored_syntax_groups')
-  let g:easytags_ignored_syntax_groups = '.*String.*,.*Comment.*,cIncluded'
+if exists('g:easytags_ignored_syntax_groups')
+  call xolox#misc#msg#warn("easytags.vim %s: The 'g:easytags_ignored_syntax_groups' option is no longer supported. It has been moved back into the code base for more flexible handling at runtime.", g:xolox#easytags#version)
 endif
 
 if !exists('g:easytags_python_script')
   let g:easytags_python_script = expand('<sfile>:p:h') . '/../misc/easytags/highlight.py'
 endif
 
-function! s:InitEasyTags(version)
-  " Check that the location of Exuberant Ctags has been configured or that the
-  " correct version of the program exists in one of its default locations.
-  if exists('g:easytags_cmd') && s:CheckCtags(g:easytags_cmd, a:version)
-    return 1
-  endif
-  if xolox#misc#os#is_win()
-    " FIXME The code below that searches the $PATH is not used on Windows at
-    " the moment because xolox#misc#path#which() generally produces absolute
-    " paths and on Windows these absolute paths tend to contain spaces which
-    " makes xolox#shell#execute() fail. I've tried quoting the program name
-    " with double quotes but it fails just the same (it works with system()
-    " though). Anyway the problem of having multiple conflicting versions of
-    " Exuberant Ctags installed is not that relevant to Windows since it
-    " doesn't have a package management system. I still want to fix
-    " xolox#shell#execute() though.
-    if s:CheckCtags('ctags', a:version)
-      let g:easytags_cmd = 'ctags'
-      return 1
-    endif
-  else
-    " Exuberant Ctags can be installed under multiple names:
-    "  - On Ubuntu Linux, Exuberant Ctags is installed as `ctags'.
-    "  - On Debian Linux, Exuberant Ctags is installed as `exuberant-ctags'.
-    "  - On Free-BSD, Exuberant Ctags is installed as `exctags'.
-    " IIUC on Mac OS X the program /usr/bin/ctags is installed by default but
-    " unusable and when the user installs Exuberant Ctags in an alternative
-    " location, it doesn't come before /usr/bin/ctags in the search path. To
-    " solve this problem in a general way and to save every Mac user out there
-    " some frustration the plug-in will search the path and consider every
-    " possible location, meaning that as long as Exuberant Ctags is installed
-    " in the $PATH the plug-in should find it automatically.
-    " XXX GF20130117 XXX Installation seems to create conflicts with Emacs,
-    " I need to add 'ctags-exuberant' to the list of possible executables.
-    for program in xolox#misc#path#which('ctags', 'exuberant-ctags', 'exctags', 'ctags-exuberant')
-      if s:CheckCtags(program, a:version)
-        let g:easytags_cmd = program
-        return 1
+" Make sure Exuberant Ctags >= 5.5 is installed.
+if !xolox#easytags#initialize('5.5')
+  " Did the user configure the plug-in to suppress the regular warning message?
+  if !(exists('g:easytags_suppress_ctags_warning') && g:easytags_suppress_ctags_warning)
+    " Explain to the user what went wrong:
+    if !exists('g:easytags_ctags_version') || empty(g:easytags_ctags_version)
+      " Exuberant Ctags is not installed / could not be found.
+      let s:msg = "easytags.vim %s: Plug-in not loaded because Exuberant Ctags isn't installed!"
+      if executable('apt-get')
+        let s:msg .= " On Ubuntu & Debian you can install Exuberant Ctags by"
+        let s:msg .= " installing the package named `exuberant-ctags':"
+        let s:msg .= " sudo apt-get install exuberant-ctags"
+      else
+        let s:msg .= " Please download & install Exuberant Ctags from http://ctags.sf.net"
       endif
-    endfor
-  endif
-endfunction
-
-function! s:CheckCtags(name, version)
-  " Not every executable out there named `ctags' is in fact Exuberant Ctags.
-  " This function makes sure it is because the easytags plug-in requires the
-  " --list-languages option (and more).
-  if executable(a:name)
-    let command = a:name . ' --version'
-    try
-      let listing = join(xolox#shell#execute(command, 1), '\n')
-    catch /^Vim\%((\a\+)\)\=:E117/
-      " Ignore missing shell.vim plug-in.
-      let listing = system(command)
-    catch
-      " xolox#shell#execute() converts shell errors to exceptions and since
-      " we're checking whether one of several executables exists we don't want
-      " to throw an error when the first one doesn't!
-      return
-    endtry
-    let pattern = 'Exuberant Ctags \zs\(\d\+\(\.\d\+\)*\|Development\)'
-    let g:easytags_ctags_version = matchstr(listing, pattern)
-    if g:easytags_ctags_version == 'Development'
-      return 1
+      call xolox#misc#msg#warn(s:msg, g:xolox#easytags#version)
     else
-      return s:VersionToNumber(g:easytags_ctags_version) >= a:version
+      " The installed version is too old.
+      let s:msg = "easytags.vim %s: Plug-in not loaded because Exuberant Ctags 5.5"
+      let s:msg .= " or newer is required while you have version %s installed!"
+      call xolox#misc#msg#warn(s:msg, g:xolox#easytags#version, g:easytags_ctags_version)
     endif
+    unlet s:msg
   endif
-endfunction
-
-function! s:VersionToNumber(s)
-  let values = split(a:s, '\.')
-  if len(values) == 1
-    return values[0] * 10
-  elseif len(values) >= 2
-    return values[0] * 10 + values[1][0]
-  endif
-endfunction
-
-if !s:InitEasyTags(55)
-  if exists('g:easytags_suppress_ctags_warning') && g:easytags_suppress_ctags_warning
-    finish
-  endif
-  if !exists('g:easytags_ctags_version') || empty(g:easytags_ctags_version)
-    let s:msg = "easytags.vim %s: Plug-in not loaded because Exuberant Ctags isn't installed!"
-    if executable('apt-get')
-      let s:msg .= " On Ubuntu & Debian you can install Exuberant Ctags by"
-      let s:msg .= " installing the package named `exuberant-ctags':"
-      let s:msg .= " sudo apt-get install exuberant-ctags"
-    else
-      let s:msg .= " Please download & install Exuberant Ctags from http://ctags.sf.net"
-    endif
-    echomsg printf(s:msg, g:xolox#easytags#version)
-  else
-    let s:msg = "easytags.vim %s: Plug-in not loaded because Exuberant Ctags 5.5"
-    let s:msg .= " or newer is required while you have version %s installed!"
-    echomsg printf(s:msg, g:xolox#easytags#version, g:easytags_ctags_version)
-  endif
-  unlet s:msg
+  " Stop loading the plug-in; don't define the (automatic) commands.
   finish
 endif
 
@@ -159,7 +99,7 @@ call xolox#easytags#register(1)
 
 command! -bar -bang -nargs=* -complete=file UpdateTags call xolox#easytags#update(0, <q-bang> == '!', [<f-args>])
 command! -bar HighlightTags call xolox#easytags#highlight()
-command! -bang TagsByFileType call xolox#easytags#by_filetype(<q-bang> == '!')
+command! -bang TagsByFileType call xolox#easytags#update#convert_by_filetype(<q-bang> == '!')
 
 " Automatic commands. {{{1
 
@@ -171,7 +111,9 @@ augroup PluginEasyTags
   autocmd VimEnter * call xolox#easytags#register(1)
   " Define the automatic commands to perform updating/highlighting.
   for s:eventname in g:easytags_events
-    execute 'autocmd' s:eventname '* call xolox#easytags#autoload(' string(s:eventname) ')'
+    if s:eventname !~? 'cursorhold'
+      execute 'autocmd' s:eventname '* call xolox#easytags#autoload(' string(s:eventname) ')'
+    endif
   endfor
   " Define an automatic command to register file type specific tags files?
   if !empty(g:easytags_by_filetype)
@@ -180,7 +122,19 @@ augroup PluginEasyTags
   " After reloading a buffer the dynamic syntax highlighting is lost. The
   " following code makes sure the highlighting is refreshed afterwards.
   autocmd BufReadPost * unlet! b:easytags_last_highlighted
+  " During :vimgrep each searched buffer triggers an asynchronous tags file
+  " update resulting in races for the tags file. To avoid this we temporarily
+  " disable automatic tags file updates during :vimgrep.
+  autocmd QuickFixCmdPre *vimgrep* call xolox#easytags#disable_automatic_updates()
+  autocmd QuickFixCmdPost *vimgrep* call xolox#easytags#restore_automatic_updates()
 augroup END
+
+" Use vim-misc to register an event handler for Vim's CursorHold and
+" CursorHoldI events which is rate limited so that our event handler is never
+" called more than once every interval.
+if index(g:easytags_events, 'CursorHold') >= 0
+  call xolox#misc#cursorhold#register({'function': 'xolox#easytags#autoload', 'arguments': ['CursorHold'], 'interval': xolox#misc#option#get('easytags_updatetime_min', 4000)/1000})
+endif
 
 " }}}1
 

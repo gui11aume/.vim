@@ -2,21 +2,44 @@ hi clear
 
 let colors_name="colors"
 
-hi LineNr ctermfg=DarkGrey
-hi Comment ctermbg=7 ctermfg=21
-hi Identifier ctermfg=6
-hi String ctermfg=201 cterm=none
-hi Function cterm=bold
-hi Number ctermfg=none
-hi Conditional ctermfg=88 cterm=bold
-hi Repeat ctermfg=88 cterm=bold
-hi Boolean ctermfg=34
-hi Delimiter ctermfg=none
-hi Type ctermfg=none
-hi Constant ctermfg=6
-hi Statement ctermfg=none
-hi Exception ctermfg=29 cterm=bold
-hi Error ctermfg=29 cterm=bold
+hi Boolean 	ctermfg=34
+"hi Character 	ctermfg=9
+hi Comment 	ctermfg=246
+hi Constant 	ctermfg=6
+hi Conditional 	ctermfg=88 			cterm=bold
+hi Delimiter 	ctermfg=none
+"hi Define	ctermfg=9			cterm=bold
+"hi Delimiter	ctermfg=9
+hi Error 	ctermfg=29 			cterm=bold
+hi Exception 	ctermfg=29 			cterm=bold
+hi Function	ctermfg=55
+hi Identifier 	ctermfg=6
+hi Include	ctermfg=25
+"hi Keyword	ctermfg=9
+hi Label	ctermfg=232			cterm=bold
+hi LineNr 	ctermfg=DarkGrey
+hi Macro	ctermfg=25
+hi MatchParen	ctermfg=232	ctermbg=221	cterm=bold
+hi Normal	ctermfg=238
+hi Number 	ctermfg=6
+hi Operator	ctermfg=29
+hi Repeat 	ctermfg=88 			cterm=bold
+hi SpecialChar	ctermfg=200
+"hi Special	ctermfg=9
+"hi SpecialKey	ctermfg=9
+"hi Statement	ctermfg=9
+hi Search 			ctermbg=221	cterm=bold
+hi String 	ctermfg=201
+hi Structure	ctermfg=29
+"hi Tag		ctermfg=9
+"hi Title	ctermfg=9
+hi TODO 	ctermfg=232	ctermbg=221	cterm=bold
+hi Typedef	ctermfg=9
+hi Type 	ctermfg=none
+hi Statement 	ctermfg=none
+
+" C colors
+hi cType	ctermfg=29
 
 " Python colors
 hi pythonStatement ctermfg=6
@@ -37,9 +60,6 @@ hi texMath ctermfg=34
 " hi texCmdName ctermfg=201
 hi texInputFile ctermfg=1
 hi texSection ctermfg=201
-
-" C colors
-hi cType cterm=bold ctermfg=29
 
 " Java colors
 hi JavaType cterm=bold ctermfg=29
