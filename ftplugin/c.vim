@@ -20,19 +20,20 @@ syntax keyword Function memmove
 syntax keyword Function pthread_create
 syntax keyword Function pthread_join
 syntax keyword Function qsort
+syntax keyword Function snprintf
+syntax keyword Function sprintf
 syntax keyword Function strcmp
 syntax keyword Function strchr
-syntax keyword Function strrchr
-syntax keyword Function strsep
-syntax keyword Function strncmp
+syntax keyword Function strchrnul
 syntax keyword Function strcpy
 syntax keyword Function strdup
-syntax keyword Function strndup
+syntax keyword Function strlen
+syntax keyword Function strncmp
+syntax keyword Function strrchr
+syntax keyword Function strsep
 syntax keyword Function strncpy
+syntax keyword Function strndup
 syntax keyword Function strtol
-syntax keyword Function strchrnul
-syntax keyword Function sprintf
-syntax keyword Function snprintf
 syntax keyword Function ungetc
 
 syntax keyword cType SEXP
@@ -41,6 +42,6 @@ syntax keyword cType z_stream
 syntax keyword Label goto
 
 syntax match cType "\<[[:alnum:]][[:alnum:]_]*_t\>"
-syntax match TODO ".*TODO.*"
-syntax match TODO ".*FIXME.*"
-syntax match TODO ".*XXX.*"
+syntax match TODO "//.*TODO.*"
+syntax match TODO "//.*FIXME.*"
+syntax match TODO "//.*XXX.*"
