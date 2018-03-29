@@ -9,10 +9,9 @@ colorscheme zenburn
 setlocal nu
 
 " Indent with 3 spaces.
-setlocal shiftwidth=3
-setlocal tabstop=3
-setlocal softtabstop=3
 setlocal expandtab
+setlocal shiftwidth=3
+setlocal softtabstop=3
 
 " Standard Python keywords.
 hi pythonBuiltin ctermfg = 152
