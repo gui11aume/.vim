@@ -15,5 +15,6 @@ setlocal softtabstop=3
 setlocal expandtab
 
 " Standard Python keywords.
+hi pythonBuiltin ctermfg = 152
 syntax keyword pythonBuiltin self
 syntax keyword pythonBuiltin __name__
