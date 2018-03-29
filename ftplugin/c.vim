@@ -1,17 +1,33 @@
-setlocal nu
-":colorscheme zenburn
-:setlocal hlsearch
-:colorscheme colors
-:setlocal shiftwidth=3
-:setlocal tabstop=3
-:setlocal softtabstop=3
-:setlocal expandtab
+" Syntax highlighting.
 syntax enable
+:colorscheme colors
 
+" Hilight search.
+:setlocal hlsearch
+
+" Number lines.
+setlocal nu
+
+" Indent with 3 spaces.
+setlocal shiftwidth=3
+setlocal tabstop=3
+setlocal softtabstop=3
+setlocal expandtab
+
+" Convention for type declarations.
+syntax match cType "\<[[:alnum:]][[:alnum:]_]*_t\>"
+
+" Susual programmer flags.
+syntax match TODO "//.*TODO.*"
+syntax match TODO "//.*FIXME.*"
+syntax match TODO "//.*XXX.*"
+
+" Standard C functions.
 syntax keyword Function fclose
 syntax keyword Function fopen
 syntax keyword Function fprintf
 syntax keyword Function free
+syntax keyword Function fwrite
 syntax keyword Function getc
 syntax keyword Function printf
 syntax keyword Function memchr
@@ -36,12 +52,4 @@ syntax keyword Function strndup
 syntax keyword Function strtol
 syntax keyword Function ungetc
 
-syntax keyword cType SEXP
-syntax keyword cType z_stream
-
 syntax keyword Label goto
-
-syntax match cType "\<[[:alnum:]][[:alnum:]_]*_t\>"
-syntax match TODO "//.*TODO.*"
-syntax match TODO "//.*FIXME.*"
-syntax match TODO "//.*XXX.*"
