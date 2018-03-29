@@ -16,3 +16,4 @@ setlocal expandtab
 
 " Standard Python keywords.
 syntax keyword pythonBuiltin self
+syntax keyword pythonBuiltin __name__

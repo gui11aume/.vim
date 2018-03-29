@@ -44,6 +44,7 @@ hi cType	ctermfg=29
 " Python colors
 hi pythonStatement ctermfg=6
 hi pythonBuiltin ctermfg=34
+hi pythonFunctionTag ctermfg=29
 
 " R colors
 hi rType ctermfg=none cterm=bold

@@ -19,5 +19,6 @@ filetype plugin indent on
 " so $HOME/.vim/filetypes.vim
 " Run the following command to activate tags.
 " :helptags ~/.vim/doc
-let g:easytags_async=1
+let g:easytags_async = 1
+let g:easytags_file = '~/.vim/tags'
 execute pathogen#infect()
