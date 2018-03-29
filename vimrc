@@ -12,13 +12,14 @@ endif
 " Check the content of file type local preferences in
 " ~/.vim/ftplugin
 filetype plugin indent on
+" Indentation is now specified in the style files.
 "autocmd FileType c setlocal shiftwidth=2 tabstop=2 expandtab
-"autocmd FileType sh setlocal shiftwidth=3 tabstop=3 expandtab
-"autocmd FileType html setlocal shiftwidth=2 tabstop=2 expandtab
-"autocmd FileType python setlocal shiftwidth=3 tabstop=3 expandtab
-" so $HOME/.vim/filetypes.vim
-" Run the following command to activate tags.
-" :helptags ~/.vim/doc
-let g:easytags_async = 1
-let g:easytags_file = '~/.vim/tags'
-execute pathogen#infect()
+:let g:easytags_async = 1
+" Use local .vimtags file and create them automatically
+" This is to avoid tags leaking between projects.
+" Set easytags_dynamic_files to 1 for recursive search
+" but no automatic creation.
+:set tags=./.vimtags;,~/.vim/tags
+:let g:easytags_dynamic_files = 2
+" Global tags are stored in the .vim directory.
+"let g:easytags_file = '~/.vim/tags'
