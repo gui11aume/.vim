@@ -1,0 +1,17 @@
+!_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
+addIntvl	/home/gfilion/all_exons/map_gRNA_to_exons.py	/^   def addIntvl(self, intvl):$/;"	m	language:Python	class:IntvlNode
+colors_name	/home/gfilion/.vim/colors/colors.vim	/^let colors_name="colors"$/;"	v	language:Vim
+create_tree	/home/gfilion/all_exons/map_gRNA_to_exons.py	/^   def create_tree(intvl_set):$/;"	m	language:Python	class:IntvlNode
+exons_to_interval_tree	/home/gfilion/all_exons/map_gRNA_to_exons.py	/^def exons_to_interval_tree(f):$/;"	f	language:Python
+g:easytags_async	/home/gfilion/.vimrc	/^let g:easytags_async = 1$/;"	v	language:Vim
+Intvl	/home/gfilion/all_exons/map_gRNA_to_exons.py	/^class Intvl:$/;"	c	language:Python
+IntvlNode	/home/gfilion/all_exons/map_gRNA_to_exons.py	/^class IntvlNode:$/;"	c	language:Python
+map_reads_to_exons	/home/gfilion/all_exons/map_gRNA_to_exons.py	/^def map_reads_to_exons(f, tree_dict):$/;"	f	language:Python
+mid	/home/gfilion/all_exons/map_gRNA_to_exons.py	/^   def mid(self):$/;"	m	language:Python	class:Intvl
+query	/home/gfilion/all_exons/map_gRNA_to_exons.py	/^   def query(self, x):$/;"	m	language:Python	class:IntvlNode
+this_is_a_function	/home/gfilion/all_exons/map_gRNA_to_exons.py	/^def this_is_a_function():$/;"	f	language:Python
+__contains__	/home/gfilion/all_exons/map_gRNA_to_exons.py	/^   def __contains__(self, z):$/;"	m	language:Python	class:Intvl	file:
+__gt__	/home/gfilion/all_exons/map_gRNA_to_exons.py	/^   def __gt__(self, z):$/;"	m	language:Python	class:Intvl	file:
+__init__	/home/gfilion/all_exons/map_gRNA_to_exons.py	/^   def __init__(self, intvl):$/;"	m	language:Python	class:IntvlNode
+__init__	/home/gfilion/all_exons/map_gRNA_to_exons.py	/^   def __init__(self, x, y, data=None):$/;"	m	language:Python	class:Intvl
+__lt__	/home/gfilion/all_exons/map_gRNA_to_exons.py	/^   def __lt__(self, z):$/;"	m	language:Python	class:Intvl	file:

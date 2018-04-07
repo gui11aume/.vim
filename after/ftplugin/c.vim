@@ -1,6 +1,6 @@
 " Syntax highlighting.
 syntax enable
-:colorscheme colors
+:colorscheme zenburn
 
 " Hilight search.
 :setlocal hlsearch
@@ -17,11 +17,6 @@ setlocal expandtab
 " Convention for type declarations.
 syntax match cType "\<[[:alnum:]][[:alnum:]_]*_t\>"
 
-" Susual programmer flags.
-syntax match TODO "//.*TODO.*"
-syntax match TODO "//.*FIXME.*"
-syntax match TODO "//.*XXX.*"
-
 " Standard C functions.
 syntax keyword Function fclose
 syntax keyword Function fopen
@@ -30,6 +25,7 @@ syntax keyword Function free
 syntax keyword Function fwrite
 syntax keyword Function getc
 syntax keyword Function printf
+syntax keyword Function malloc
 syntax keyword Function memchr
 syntax keyword Function memcpy
 syntax keyword Function memmove
@@ -51,5 +47,3 @@ syntax keyword Function strncpy
 syntax keyword Function strndup
 syntax keyword Function strtol
 syntax keyword Function ungetc
-
-syntax keyword Label goto

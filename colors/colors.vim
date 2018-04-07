@@ -33,7 +33,6 @@ hi String 	ctermfg=201
 hi Structure	ctermfg=29
 "hi Tag		ctermfg=9
 "hi Title	ctermfg=9
-hi TODO 	ctermfg=232	ctermbg=221	cterm=bold
 hi Typedef	ctermfg=9
 hi Type 	ctermfg=none
 hi Statement 	ctermfg=none

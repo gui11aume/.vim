@@ -1,0 +1,13 @@
+!_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
+colors_name	/home/gfilion/.vim/colors/colors.vim	/^let colors_name="colors"$/;"	v	language:Vim
+g:colors_name	/home/gfilion/.vim/colors/zenburn.vim	/^let g:colors_name="zenburn"$/;"	v	language:Vim
+g:zenburn_alternate_Error	/home/gfilion/.vim/colors/zenburn.vim	/^    let g:zenburn_alternate_Error = 0$/;"	v	language:Vim
+g:zenburn_alternate_Include	/home/gfilion/.vim/colors/zenburn.vim	/^    let g:zenburn_alternate_Include = 0$/;"	v	language:Vim
+g:zenburn_alternate_Visual	/home/gfilion/.vim/colors/zenburn.vim	/^    let g:zenburn_alternate_Visual = 0$/;"	v	language:Vim
+g:zenburn_color_also_Ignore	/home/gfilion/.vim/colors/zenburn.vim	/^    let g:zenburn_color_also_Ignore = 0$/;"	v	language:Vim
+g:zenburn_disable_ctags_highlighting_support	/home/gfilion/.vim/colors/zenburn.vim	/^    let g:zenburn_disable_ctags_highlighting_support = 0$/;"	v	language:Vim
+g:zenburn_force_dark_Background	/home/gfilion/.vim/colors/zenburn.vim	/^    let g:zenburn_force_dark_Background = 0$/;"	v	language:Vim
+g:zenburn_high_Contrast	/home/gfilion/.vim/colors/zenburn.vim	/^    let g:zenburn_high_Contrast = 0$/;"	v	language:Vim
+g:zenburn_old_Visual	/home/gfilion/.vim/colors/zenburn.vim	/^    let g:zenburn_old_Visual = 0$/;"	v	language:Vim
+g:zenburn_unified_CursorColumn	/home/gfilion/.vim/colors/zenburn.vim	/^    let g:zenburn_unified_CursorColumn = 0$/;"	v	language:Vim
+zenburn_ctags	/home/gfilion/.vim/colors/zenburn.vim	/^    let _zenburn_ctags = 1$/;"	v	language:Vim

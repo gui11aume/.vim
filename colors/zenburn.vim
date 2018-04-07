@@ -236,7 +236,7 @@ hi String          guifg=#cc9393
 hi Structure       guifg=#efefaf gui=bold
 hi Tag             guifg=#e89393 gui=bold
 hi Title           guifg=#efefef gui=bold
-hi Todo            guifg=#dfdfdf guibg=bg gui=bold
+"hi Todo            guifg=#dfdfdf guibg=bg gui=bold
 hi Typedef         guifg=#dfe4cf gui=bold
 hi Type            guifg=#dfdfbf gui=bold
 hi Underlined      guifg=#dcdccc gui=underline
@@ -254,7 +254,8 @@ hi SpellLocal guisp=#7cac7c guifg=#9ccc9c
 if &t_Co > 255
     hi Boolean         ctermfg=181
     hi Character       ctermfg=181   cterm=bold
-    hi Comment         ctermfg=108
+"    hi Comment         ctermfg=108
+    hi Comment         ctermfg=151
     hi Conditional     ctermfg=223   cterm=bold
     hi Constant        ctermfg=181   cterm=bold
     hi Cursor          ctermfg=233   ctermbg=109     cterm=bold
@@ -268,17 +269,20 @@ if &t_Co > 255
     hi Directory       ctermfg=109   cterm=bold
     hi ErrorMsg        ctermfg=115   ctermbg=236     cterm=bold
     hi Exception       ctermfg=249   cterm=bold
-    hi Float           ctermfg=251
+"    hi Float           ctermfg=251
+    hi Float           ctermfg=230
     hi Function        ctermfg=228
     hi Identifier      ctermfg=223
     hi IncSearch       ctermbg=228   ctermfg=238
     hi Keyword         ctermfg=223   cterm=bold
-    hi Label           ctermfg=187   cterm=underline
+"    hi Label           ctermfg=187   cterm=underline
+    hi Label           ctermfg=146   cterm=bold
     hi LineNr          ctermfg=248   ctermbg=233
     hi Macro           ctermfg=223   cterm=bold
     hi ModeMsg         ctermfg=223   cterm=none
     hi MoreMsg         ctermfg=15    cterm=bold
-    hi Number          ctermfg=116
+"    hi Number          ctermfg=116
+    hi Number          ctermfg=230
     hi Operator        ctermfg=230
     hi PreCondit       ctermfg=180   cterm=bold
     hi PreProc         ctermfg=223   cterm=bold
@@ -290,16 +294,22 @@ if &t_Co > 255
     hi Special         ctermfg=181
     hi SpecialKey      ctermfg=151
     hi Statement       ctermfg=187   ctermbg=234     cterm=none
+    hi cStatement      ctermfg=146   cterm=bold
     hi StatusLine      ctermfg=236   ctermbg=186
     hi StatusLineNC    ctermfg=235   ctermbg=108
-    hi StorageClass    ctermfg=249   cterm=bold
+"    hi StorageClass    ctermfg=249   cterm=bold
+    hi StorageClass    ctermfg=117
     hi String          ctermfg=174
-    hi Structure       ctermfg=229   cterm=bold
+"    hi Structure       ctermfg=229   cterm=bold
+    hi Structure       ctermfg=117
     hi Tag             ctermfg=181   cterm=bold
     hi Title           ctermfg=7     ctermbg=234     cterm=bold
-    hi Todo            ctermfg=108   ctermbg=234     cterm=bold
-    hi Typedef         ctermfg=253   cterm=bold
-    hi Type            ctermfg=187   cterm=bold
+"    hi Todo            ctermfg=108   ctermbg=234     cterm=bold
+    hi Todo            ctermfg=193   cterm=bold
+"    hi Typedef         ctermfg=253   cterm=bold
+    hi Typedef         ctermfg=159
+"    hi Type            ctermfg=187   cterm=bold
+    hi Type            ctermfg=159   cterm=bold
     hi Underlined      ctermfg=188   ctermbg=234     cterm=bold
     hi VertSplit       ctermfg=236   ctermbg=65
     hi VisualNOS       ctermfg=236   ctermbg=210     cterm=bold
